@@ -8,7 +8,7 @@ int main(void)
 	puts("Siling Probinsya Order Taker");
 	puts("Copyright (c) 2021 Arsinoe-Z et alia. All rights reserved.\n");
 	
-	// Prompt to press any key
+	// Prompt user to press any key
     printf("Press any key to continue... ");
     getch();
 	

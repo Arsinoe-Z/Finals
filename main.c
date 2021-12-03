@@ -38,14 +38,20 @@ char codes[ITEMS];
 
 int main(void)
 {
-	  // About the program
-	  puts("Siling Probinsya Order Taker");
-	  puts("Copyright (c) 2021 Arsinoe-Z et alia. All rights reserved.\n");
+	for (int i = 0; i < ITEMS; i++)
+	{
+		foods[i].name = names[i];
+		foods[i].price = prices[i];
+		foods[i].code  = codes[i];
+	}
+	// About the program
+	puts("Siling Probinsya Order Taker");
+	puts("Copyright (c) 2021 Arsinoe-Z et alia. All rights reserved.\n");
     printf("Press any key to continue... ");
     getch();
 
     system("cls");
-	  puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
+	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
   	puts(".*         Welcome to Siling Probinsya         *.");
   	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
   	return 0;

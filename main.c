@@ -9,11 +9,11 @@ int main(void)
 	puts("Copyright (c) 2021 Arsinoe-Z et alia. All rights reserved.\n");
 	
 	// Prompt user to press any key to continue
-    printf("Press any key to continue... ");
-    getch();
+	printf("Press any key to continue... ");
+	getch();
 	
 	// Clear screen and display the next user interface
-    system("cls");
+	system("cls");
 	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
 	puts(".          Welcome to Siling Probinsya          .");
 	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");

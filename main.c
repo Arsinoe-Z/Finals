@@ -142,7 +142,7 @@ void free_order(node *n)
     	    return;
     	}
 
-    	// Free code
+    	// Free next
     	free_order(n->next);
 
     	// Free node

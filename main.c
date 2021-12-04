@@ -85,24 +85,27 @@ int main(void)
 		printf("%s\n", foods[i].name);
 	}
 	
-	ORDER: puts("\nWould you like to order? [y/n]:");
-	char c = getch();
-	printf("How many order do you like to make? ");
-	int number;
-	scanf("%i", &number);
-	if (c == 'y')
+	ORDER: printf("\nWould you like to order? [y/n]: ");
+	char c;
+	scanf("%c", &c);
+	while (getchar() != '\n');
+	if (c != 'Y' && c != 'y' && c != 'N' && c != 'n')
 	{
+		goto ORDER;
+	}	
+	if (c == 'y' || c == 'Y')
+	{
+		printf("How many order do you like to make? ");
+		int number;
+		scanf("%i", &number);
+		while (getchar() != '\n');
 		order = get_order(number);
 	}
-	else if (c == 'n')
+	else if (c == 'n' || c == 'N')
 	{
 		free_order(order);
 		puts("Thank you! Come again!");
 		return 0;
-	}
-	else
-	{
-		goto ORDER;
 	}
 }
 

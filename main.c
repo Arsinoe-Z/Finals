@@ -12,15 +12,6 @@ typedef struct
 	char code[2];
 } food;
 
-typedef struct node
-{
-	char code[2];
-	struct node *next;
-} node;
-
-node *get_order(int number);
-void free_order(node *n);
-
 food foods[ITEMS];
 char *names[ITEMS] = {"Pinangat", "Picadillo", "Dinuguan", 
 		"Bicol Express", "Kandingga", "Laing", 
@@ -62,8 +53,6 @@ int main(void)
 		foods[i].code[0]  = codes[i][0];
 		foods[i].code[1]  = codes[i][1];
 	}
-
-	node *order = NULL;
 	
 	// About the program
 	puts("Siling Probinsya Order Taker");
@@ -76,16 +65,23 @@ int main(void)
   	puts(".*         Welcome to Siling Probinsya         *.");
   	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
 	
-	puts("Please take your order!\n");
+	puts("\nPlease take your order!\n");
 	
 	for (int i = 0; i < ITEMS; i++)
 	{
 		printf("Code: %s    ", foods[i].code);
-		printf("Php: %i    ", foods[i].price);
+		printf("Php: %i   ", foods[i].price);
+		if (foods[i].price < 100)
+		{
+			printf(" ");
+		}
 		printf("%s\n", foods[i].name);
 	}
-	
-	ORDER: printf("\nWould you like to order? [y/n]: ");
+	puts("P.s. We offer unli-rice.");
+	int total = 0;
+	int x = 1;
+	puts("");
+	ORDER: printf("Would you like to make an order? [y/n]: ");
 	char c;
 	scanf("%c", &c);
 	while (getchar() != '\n');
@@ -95,56 +91,30 @@ int main(void)
 	}	
 	if (c == 'y' || c == 'Y')
 	{
-		printf("How many order do you like to make? ");
-		int number;
-		scanf("%i", &number);
-		while (getchar() != '\n');
-		order = get_order(number);
+		for (;;)
+		{
+			printf("Order no.%i: ", x);
+			char ch[2];
+			scanf("%s", &ch);
+			while (getchar() != '\n');
+			for (int j = 0; j < ITEMS; j++)
+			{
+				if (strcmp(foods[j].code, ch) == 0)
+				{
+					printf("Php: %i   ", foods[j].price);
+					if (foods[j].price < 100)
+					{
+						printf(" ");
+					}
+					printf("%s\n", foods[j].name);
+					total += foods[j].price;
+				}
+			}
+			x++;
+			goto ORDER;
+		}
 	}
-	else if (c == 'n' || c == 'N')
-	{
-		free_order(order);
-		puts("Thank you! Come again!");
-		return 0;
-	}
-}
-
-node *get_order(int number)
-{
-	char c[2];
-	printf("Enter code: ");
-	scanf("%s", c);
-	node *n = malloc(sizeof(node));
-	if (n == NULL)
-	{
-		return NULL;
-	}
-	if (number > 1)
-	{
-		n->code[0] = c[0];
-		n->code[1] = c[1];
-		n->next = get_order(number - 1);
-	}
-	else
-	{
-		n->next = NULL;
-		n->code[0] = c[0];
-		n->code[1] = c[1];
-	}
-	return n;
-}
-
-void free_order(node *n)
-{
-	// Handle base case
-    	if (n == NULL)
-    	{
-    	    return;
-    	}
-
-    	// Free next
-    	free_order(n->next);
-
-    	// Free node
-    	free(n);
+	printf("\n\nThe total price is Php: %i\n", total);
+	puts("Thank you! Come again!");
+	return 0;
 }

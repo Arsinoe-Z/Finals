@@ -80,8 +80,16 @@ int main(void)
 	puts("P.s. We offer unli-rice.");
 	int total = 0;
 	int x = 1;
+	int flag = 0;
 	puts("");
-	ORDER: printf("Would you like to make an order? [y/n]: ");
+	ORDER: if (flag == 0)
+	{
+		printf("Would you like to make an order? [y/n]: ");
+	}
+	else
+	{
+		printf("Would you like to make another order? [y/n]: ");
+	}
 	char c;
 	scanf("%c", &c);
 	while (getchar() != '\n');
@@ -93,7 +101,7 @@ int main(void)
 	{
 		for (;;)
 		{
-			printf("Order no.%i: ", x);
+			FORFLAG: printf("Order no.%i: ", x);
 			char ch[2];
 			scanf("%s", &ch);
 			while (getchar() != '\n');
@@ -108,9 +116,19 @@ int main(void)
 					}
 					printf("%s\n", foods[j].name);
 					total += foods[j].price;
+					flag = 1;
+					break;
 				}
+				flag = 0;
 			}
-			x++;
+			if (flag == 1 )
+			{
+				x++;
+			}
+			else
+			{
+				goto FORFLAG;
+			}
 			goto ORDER;
 		}
 	}

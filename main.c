@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
 #include <string.h>
 
@@ -8,7 +9,7 @@ typedef struct
 {
 	char *name;
 	int price;
-	char *code;
+	char code[2];
 } food;
 
 food foods[ITEMS];
@@ -34,11 +35,14 @@ int prices[ITEMS] = {95, 100, 125, 200, 150,
 		55, 49, 50, 45, 50, 
 		48, 50, 48, 60, 65, 
 		50, 45, 65, 45};
-char codes[ITEMS] = {0001, 0002, 0003, 0004, 0005, 0006, 0007,
-		0008, 0009, 0010, 0011, 0012, 0013, 0014, 0015,
-		0016, 0017, 0018, 0019, 0020, 0021, 0022, 0023,
-		0024, 0025, 0026, 0027, 0028, 0029, 0030, 0031,
-		0032, 0033, 0034, 0035, 0036, 0037, 0038, 0039};
+char codes[ITEMS][2] = {{'0', '1'}, {'0', '2'}, {'0', '3'}, {'0', '4'}, {'0', '5'}, 
+		{'0', '6'}, {'0', '7'}, {'0', '8'}, {'0', '9'}, {'1', '0'}, 
+		{'1', '1'}, {'1', '2'}, {'1', '3'}, {'1', '4'}, {'1', '5'},
+		{'1', '6'}, {'1', '7'}, {'1', '8'}, {'1', '9'}, {'2', '0'}, 
+		{'2', '1'}, {'2', '2'}, {'2', '3'}, {'2', '4'}, {'2', '5'}, 
+		{'2', '6'}, {'2', '7'}, {'2', '8'}, {'2', '9'}, {'3', '0'}, 
+		{'3', '1'}, {'3', '2'}, {'3', '3'}, {'3', '4'}, {'3', '5'}, 
+		{'3', '6'}, {'3', '7'}, {'3', '8'}, {'3', '9'}};
 		
 int main(void)
 {
@@ -46,8 +50,10 @@ int main(void)
 	{
 		foods[i].name = names[i];
 		foods[i].price = prices[i];
-		foods[i].code  = codes[i];
+		foods[i].code[0]  = codes[i][0];
+		foods[i].code[1]  = codes[i][1];
 	}
+	
 	// About the program
 	puts("Siling Probinsya Order Taker");
 	puts("Copyright (c) 2021 Arsinoe-Z et alia. All rights reserved.\n");
@@ -58,5 +64,15 @@ int main(void)
 	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
   	puts(".*         Welcome to Siling Probinsya         *.");
   	puts("*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*");
+	
+	puts("Please take your order!\n");
+	
+	for (int i = 0; i < ITEMS; i++)
+	{
+		printf("Code: %s    ", foods[i].code);
+		printf("Php: %i    ", foods[i].price);
+		printf("%s\n", foods[i].name);
+	}
+	
   	return 0;
 }

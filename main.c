@@ -12,6 +12,15 @@ typedef struct
 	char code[2];
 } food;
 
+typedef struct node
+{
+	char code[2];
+	struct node *next;
+} node;
+
+node *get_order(int number);
+void free_order(node *n);
+
 food foods[ITEMS];
 char *names[ITEMS] = {"Pinangat", "Picadillo", "Dinuguan", 
 		"Bicol Express", "Kandingga", "Laing", 
@@ -53,6 +62,8 @@ int main(void)
 		foods[i].code[0]  = codes[i][0];
 		foods[i].code[1]  = codes[i][1];
 	}
+
+	node *order = NULL;
 	
 	// About the program
 	puts("Siling Probinsya Order Taker");
@@ -74,5 +85,63 @@ int main(void)
 		printf("%s\n", foods[i].name);
 	}
 	
-  	return 0;
+	ORDER: puts("\nWould you like to order? [y/n]:");
+	char c = getch();
+	printf("How many order do you like to make? ");
+	int number;
+	scanf("%i", &number);
+	if (c == 'y')
+	{
+		order = get_order(number);
+	}
+	else if (c == 'n')
+	{
+		free_order(order);
+		puts("Thank you! Come again!");
+		return 0;
+	}
+	else
+	{
+		goto ORDER;
+	}
+}
+
+node *get_order(int number)
+{
+	char c[2];
+	printf("Enter code: ");
+	scanf("%s", c);
+	node *n = malloc(sizeof(node));
+	if (n == NULL)
+	{
+		return NULL;
+	}
+	if (number > 1)
+	{
+		n->code[0] = c[0];
+		n->code[1] = c[1];
+		n->next = get_order(number - 1);
+	}
+	else
+	{
+		n->next = NULL;
+		n->code[0] = c[0];
+		n->code[1] = c[1];
+	}
+	return n;
+}
+
+void free_order(node *n)
+{
+	// Handle base case
+    	if (n == NULL)
+    	{
+    	    return;
+    	}
+
+    	// Free code
+    	free_order(n->next);
+
+    	// Free node
+    	free(n);
 }

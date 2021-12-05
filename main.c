@@ -98,7 +98,7 @@ int main(void)
 		}
 		printf("%s\n", foods[i].name);
 	}
-	char *random = easter_eggs[rand() % 15];
+	char *random = easter_eggs[rand() % EGGS];
 	printf("\n%s\n", random);
 	int total = 0;
 	int x = 1;

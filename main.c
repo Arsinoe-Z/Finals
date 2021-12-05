@@ -5,7 +5,7 @@
 #include <time.h>
 
 #define ITEMS 39
-#define EGGS 15
+#define EGGS 17
 
 typedef struct
 {
@@ -20,7 +20,7 @@ char *easter_eggs[EGGS] = {"We offer unli-rice",
 			   "Cooking is love made visible",
 			   "Life is what you COOKED it",
 			   "Speak with the taste", 
-			   "Paradize on you plate",
+			   "Paradize on your plate",
 			   "My kitchen, my rules",
 			   "Food is an ART",
 			   "Good food ends with good talk",
@@ -28,7 +28,9 @@ char *easter_eggs[EGGS] = {"We offer unli-rice",
 			   "May the fork be with you",
 			   "Cooking with love provides food for the soul",
 			   "Wake up, it's food o'clock",
-			   "We offer coffee, don't worry"};
+			   "We offer coffee, don't worry"
+			   "Not too much sugar",
+			   "Spicy!"};
 
 food foods[ITEMS];
 char *names[ITEMS] = {"Pinangat", "Picadillo", "Dinuguan", 

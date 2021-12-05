@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <string.h>
+#include <time.h>
 
 #define ITEMS 39
+#define EGGS 15
 
 typedef struct
 {
@@ -11,6 +13,22 @@ typedef struct
 	int price;
 	char code[2];
 } food;
+
+char *easter_eggs[EGGS] = {"We offer unli-rice",
+			   "Water is absolutely free",
+			   "Good food, good mood",
+			   "Cooking is love made visible",
+			   "Life is what you COOKED it",
+			   "Speak with the taste", 
+			   "Paradize on you plate",
+			   "My kitchen, my rules",
+			   "Food is an ART",
+			   "Good food ends with good talk",
+			   "Pour some sugar on me",
+			   "May the fork be with you",
+			   "Cooking with love provides food for the soul",
+			   "Wake up, it's food o'clock",
+			   "We offer coffee, don't worry"};
 
 food foods[ITEMS];
 char *names[ITEMS] = {"Pinangat", "Picadillo", "Dinuguan", 
@@ -46,6 +64,7 @@ char codes[ITEMS][2] = {{'0', '1'}, {'0', '2'}, {'0', '3'}, {'0', '4'}, {'0', '5
 		
 int main(void)
 {
+	srand(time(NULL));
 	for (int i = 0; i < ITEMS; i++)
 	{
 		foods[i].name = names[i];
@@ -77,7 +96,8 @@ int main(void)
 		}
 		printf("%s\n", foods[i].name);
 	}
-	puts("P.s. We offer unli-rice.");
+	char *random = easter_eggs[rand() % 15];
+	printf("\n%s\n", random);
 	int total = 0;
 	int x = 1;
 	int flag = 0;
